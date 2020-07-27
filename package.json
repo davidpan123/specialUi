@@ -1,6 +1,6 @@
 {
   "name": "special-ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "a library of effects related to visualization!",
   "main": "lib/specialUi.common.js",
