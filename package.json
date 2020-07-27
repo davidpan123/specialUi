@@ -1,0 +1,35 @@
+{
+  "name": "special-ui",
+  "version": "0.1.1",
+  "private": false,
+  "description": "a library of effects related to visualization!",
+  "main": "lib/specialUi.common.js",
+  "keywords": [
+    "special-ui",
+    "visualization"
+  ],
+  "author": "davidpan123",
+  "license": "MIT",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lib": "vue-cli-service build --target lib --name specialUi --dest lib packages/index.js"
+  },
+  "respository": {
+    "type": "git",
+    "url": "https://github.com/davidpan123/specialUi"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "d3": "^5.16.0",
+    "sass-loader": "^9.0.2",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.4.0",
+    "@vue/cli-service": "~4.4.0",
+    "babel-plugin-component": "^1.1.1",
+    "node-sass": "^4.14.1",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
