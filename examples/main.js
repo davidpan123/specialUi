@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 // 导入组件库
-import { FlyLine } from '../packages'
+import { FlyLine, AirLoading, RingChart, FlowChart } from '../packages'
 // 注册组件库
 Vue.use(FlyLine)
+Vue.use(AirLoading)
+Vue.use(RingChart)
+Vue.use(FlowChart)
 
 // import specialUi from '../packages'
 // Vue.use(specialUi)

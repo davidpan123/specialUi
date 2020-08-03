@@ -16,13 +16,13 @@
           <circle id="circle" r="50" fill="url(#grad)"  />
         </mask>
         <radialGradient
-          id="grad"
-          cx="0.5"
-          cy="0.5"
-          r="0.5" >
-          <stop stop-color="#FFE076" offset="0%"></stop>
-          <stop stop-color="#FFE076" stop-opacity="0" offset="100%"></stop>
-        </radialGradient>
+	        id="grad"
+	        cx="0.5"
+	        cy="0.5"
+	        r="0.5" >
+	        <stop offset="0%" stop-color="#fff" stop-opacity='1'/>
+	        <stop offset="100%" stop-color="#fff" stop-opacity='0' />
+	    </radialGradient>
       </defs>
     </svg>
   </div>
@@ -117,6 +117,7 @@ export default {
           let anPath = lineGroups.append('path')
             .attr('stroke', self.mergeConfig.flyLineColor)
             .attr('fill', 'none')
+            // .attr('mask', `url(#mask)`)
             .attr("marker-end", () => {
               return self.mergeConfig.isShowArrow ? "url(#arrow)" : null
             })
@@ -138,7 +139,7 @@ export default {
                 return function (t) {
                   const p = $path.getPointAtLength(t * l);  // 新的终点
                   const x = ((1 - t) * x1) + (t * x2); const y = ((1 - t) * y1) + (t * y2)
-                  d3.select(`#circle${i}`).attr('cx', p.x).attr('cy', p.y);  // 蒙版坐标
+                  //d3.select(`#circle${i}`).attr('cx', p.x).attr('cy', p.y);  // 蒙版坐标
                   return `M${x1},${y1} Q${x},${y} ${p.x},${p.y}`
                 }
               }

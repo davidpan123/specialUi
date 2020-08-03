@@ -1,26 +1,24 @@
 <template>
   <div id="app">
-    <fly-line :lines="flyPoints"></fly-line>
+    <!-- <TestFlyLine/> -->
+    <!-- <TestLoading/> -->
+    <!-- <TestRingChart/> -->
+    <TestFlowChart/>
   </div>
 </template>
 
 <script>
+import TestFlyLine from './components/TestFlyLine.vue'
+import TestLoading from './components/TestLoading.vue'
+import TestRingChart from './components/TestRingChart.vue'
+import TestFlowChart from './components/TestFlowChart.vue'
 export default {
   name: 'App',
-  data () {
-    return {
-      flyPoints: [
-        {
-          start: [329.3029054888133, 166.22157534665564],
-          end: [800, 80],
-        },
-        {
-          start: [829.3029054888133, 166.22157534665564],
-          end: [1400, 80],
-          arcRadis: -0.6
-        }
-      ]
-    }
+  components: { 
+    TestFlyLine,
+    TestLoading,
+    TestRingChart,
+    TestFlowChart
   }
 }
 </script>
@@ -39,5 +37,6 @@ body {
   text-align: center;
   color: #2c3e50;
   height: 100%;
+  background: #202020;
 }
 </style>
