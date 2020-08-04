@@ -3,7 +3,8 @@
     <!-- <TestFlyLine/> -->
     <!-- <TestLoading/> -->
     <!-- <TestRingChart/> -->
-    <TestFlowChart/>
+    <!-- <TestFlowChart/> -->
+    <TestDashChart/>
   </div>
 </template>
 
@@ -12,13 +13,15 @@ import TestFlyLine from './components/TestFlyLine.vue'
 import TestLoading from './components/TestLoading.vue'
 import TestRingChart from './components/TestRingChart.vue'
 import TestFlowChart from './components/TestFlowChart.vue'
+import TestPhotoWall from './components/TestPhotoWall.vue'
+import TestDashChart from './components/TestDashChart.vue'
 export default {
   name: 'App',
   components: { 
     TestFlyLine,
     TestLoading,
     TestRingChart,
-    TestFlowChart
+    TestDashChart
   }
 }
 </script>
@@ -37,6 +40,6 @@ body {
   text-align: center;
   color: #2c3e50;
   height: 100%;
-  background: #202020;
+  /* background: #202020; */
 }
 </style>

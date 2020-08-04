@@ -1,6 +1,6 @@
 {
   "name": "special-ui",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": false,
   "description": "a library of effects related to visualization!",
   "main": "package/index.js",

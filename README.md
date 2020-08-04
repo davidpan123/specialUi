@@ -192,12 +192,12 @@ color|颜色|'#F47153'
 radius|半径|3
 
 
-## 3. RingChart 组件
+## 4. RingChart 组件
 流程图组件
 
 ### 效果图
 ![avatar](https://cdn.nlark.com/yuque/0/2020/png/617302/1596437079488-9a73b03f-e980-4996-8ff8-d04f03956ee1.png)
-### 无人机动画加载组件使用
+### 流程图组件使用
 #### 引入
 ```js
 import Vue from 'vue'
@@ -329,6 +329,7 @@ export default {
 #### 组件参数
 属性|说明|默认值
 --|:--:|--:
+direction|流程图方向|LR (LR: 从左至右; RL: 从右至左; TB: 从上至下; BT: 从下至上)
 nodes|流程图节点|[]
 edges|流程图连线|[]
 nodeStyle|节点样式|' ', 遵循svg样式
@@ -343,3 +344,63 @@ labelStyle|文字样式|' ', 遵循svg样式
 #### 事件
 属性|说明
 onSelect|节点点击事件
+
+## 5. DashChart 组件
+一个dash柱状图组件
+
+### 效果图
+![avatar](https://cdn.nlark.com/yuque/0/2020/png/617302/1596536698343-e70158bb-d45a-42d0-a853-c6edc23d156e.png)
+### DashChart组件使用
+#### 引入
+```js
+import Vue from 'vue'
+import {DashChart} from 'special-ui'
+Vue.use(DashChart)
+```
+#### 使用
+```html
+<template>
+<div class="container">
+    <dash-chart :dataset="dataset" :xAxisArr="xAxisArr"/>
+</div>
+</template>
+
+<script>
+export default {
+    data () {
+        return {
+            dataset: [10, 20, 30, 23, 13, 40, 27],
+            xAxisArr: ['06-01', '06-02', '06-03', '06-04', '06-05', '06-06', '06-07']
+        }
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+.container {
+  height: 100%;
+}
+</style>
+```
+#### 组件参数
+属性|说明|默认值
+--|:--:|--:
+dataset|统计数据数组|[]
+xAxisArr|x轴显示|[0, 1, ...]
+width|画布宽度|600
+height|画布高度|400
+color|柱状图颜色|'#31cf78'
+dash|柱状图高度和间隔|[10, 5]
+yAxisNum|y轴显示个数|5
+tickSizeInner|坐标轴内刻度|0
+tickSizeOuter|坐标轴外刻度|0
+axisColor|坐标轴颜色|'#666'
+axisTextColor|坐标轴文本颜色|'#333'
+padding|内间距|{top: 60, bottom: 60, left: 60, right: 60}
+textStyle|文本样式|{fontSize: '14px',color: '#333333',dx: 5,dy: -15}  
+
+textStyle属性说明:  
+fontSize: 字体大小  
+color: 字体颜色  
+dx: 文本偏移量x方向  
+dy: 文本偏移量y方向  
