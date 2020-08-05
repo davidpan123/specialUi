@@ -4,7 +4,8 @@
     <!-- <TestLoading/> -->
     <!-- <TestRingChart/> -->
     <!-- <TestFlowChart/> -->
-    <TestDashChart/>
+    <!-- <TestDashChart/> -->
+    <TestDashRatioChart/>
   </div>
 </template>
 
@@ -15,13 +16,15 @@ import TestRingChart from './components/TestRingChart.vue'
 import TestFlowChart from './components/TestFlowChart.vue'
 import TestPhotoWall from './components/TestPhotoWall.vue'
 import TestDashChart from './components/TestDashChart.vue'
+import TestDashRatioChart from './components/TestDashRatioChart.vue'
 export default {
   name: 'App',
   components: { 
     TestFlyLine,
     TestLoading,
     TestRingChart,
-    TestDashChart
+    TestDashChart,
+    TestDashRatioChart
   }
 }
 </script>

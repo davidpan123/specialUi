@@ -404,3 +404,58 @@ fontSize: 字体大小
 color: 字体颜色  
 dx: 文本偏移量x方向  
 dy: 文本偏移量y方向  
+
+
+## 6. DashRatioChart 组件
+一个栅格柱状统计|对比图
+
+### 效果图
+![avatar](https://cdn.nlark.com/yuque/0/2020/png/617302/1596630239706-5e2977a8-1a8f-46fd-9730-0db93e05b8da.png)
+### DashRatioChart组件使用
+#### 引入
+```js
+import Vue from 'vue'
+import {DashRatioChart} from 'special-ui'
+Vue.use(DashRatioChart)
+```
+#### 使用
+```html
+<template>
+<div class="container">
+    <dash-ratio-chart :width="600" :raduis="2" :dataset="dataset"/>
+</div>
+</template>
+
+<script>
+export default {
+    data () {
+        return {
+            dataset:  [
+                {
+                    num: 300,
+                    color: '#66FF99'
+                },
+                {
+                    num: 200,
+                    color: '#F1E541'
+                }
+            ]
+        }
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+.container {
+  height: 100%;
+}
+</style>
+```
+#### 组件参数
+属性|说明|默认值
+--|:--:|--:
+dataset|数据|[]
+width|画布宽度|600
+raduis|栅格矩形圆角|3
+dash|栅格矩形宽、高和间隔|[5, 20, 3]
+padding|左右间距|{left: 5, right: 5}
