@@ -71,8 +71,103 @@ start|起点坐标|无
 end|终点坐标|无
 arcRadis|曲线系数|0.5
 
+## 2. FlyLine2 组件
+一个2维的飞线组件2
+### 效果图
+![avatar](https://cdn.nlark.com/yuque/0/2020/png/617302/1597056063195-edb03dc8-05bc-447d-8f42-a9162b553e44.png?x-oss-process=image%2Fresize%2Cw_746)
 
-## 2. AirLoading 组件
+### 飞线使用
+#### 引入
+```js
+import Vue from 'vue'
+import {FlyLine2} from 'special-ui'
+Vue.use(FlyLine2)
+```
+#### 使用
+```html
+<template>
+  <div class="container">
+    <fly-line2 :width="1820" :height="900" :dataset="data" :config="config"></fly-line2>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'App',
+  data () {
+    return {
+      data: [
+          {
+              from: { x: 300, y: 300},
+              to: { x: 700, y: 100},
+              raduis: 0.5
+          }, 
+          {
+              from: { x: 1200, y: 300},
+              to: { x: 800, y: 100},
+              raduis: 0.5
+          }, 
+          {
+              from: { x: 1300, y: 100},
+              to: { x: 1600, y: 300},
+              raduis: -0.5
+          }
+      ],
+      config: {
+          //marker点半径
+          // markerRadius: 2,
+          //marker点颜色,为空或null则默认取线条颜色
+          // markerColor: null,
+          // 线条类型 solid、dashed; 有lineDash并且设值则dashed
+          lineDash: [5, 4],
+          //线条宽度
+          lineWidth: 1,
+          //线条颜色
+          colors: ['#F9815C', '#F8AB60', '#EDCC72', '#E2F194', '#94E08A', '#4ECDA5'],
+          //移动点半径
+          moveRadius: 3,
+          //移动点颜色
+          fillColor: '#fff',
+          //移动点阴影颜色
+          shadowColor: '#fff',
+          //移动点阴影大小
+          shadowBlur: 2
+      }
+    }
+  }
+}
+</script>
+
+<style>
+.container {
+  height: 100%;
+}
+</style>
+```
+#### 组件参数
+属性|说明|默认值
+--|:--:|--:
+width|画布宽度|0
+height|画布高度|0
+dataset|飞线数组|[]
+config|飞线参数配置|{}
+
+config: 数组
+属性|说明|默认值
+--|:--:|--:
+markerRadius|marker点半径|3, 为0则没有圆点显示
+markerColor|marker颜色|null, 不设置则和线条颜色一致
+lineWidth|线条宽度|1
+lineDash|虚线设置|[], 为空数组则显示实线
+colors|飞线颜色|[]
+moveRadius|移动点半径|3
+fillColor|移动点颜色|'#fff'
+shadowColor|移动点阴影颜色|'#fff'
+shadowColor|移动点阴影颜色|'#fff'
+shadowBlur|移动点阴影大小|5
+
+
+## 3. AirLoading 组件
 一个无人机动画加载组件
 ### 效果图
 ![avatar](https://cdn.nlark.com/yuque/0/2020/png/617302/1596187843638-a838a2a7-6595-469b-9274-ac495464ea15.png?x-oss-process=image%2Fresize%2Cw_660)
@@ -93,7 +188,7 @@ Vue.use(AirLoading)
 --|:--:|--:
 loading|是否加载|true
 
-## 3. RingChart 组件
+## 4. RingChart 组件
 一个炫酷的环形占比组件
 
 ### 效果图
@@ -192,7 +287,7 @@ color|颜色|'#F47153'
 radius|半径|3
 
 
-## 4. RingChart 组件
+## 5. RingChart 组件
 流程图组件
 
 ### 效果图
@@ -345,7 +440,7 @@ labelStyle|文字样式|' ', 遵循svg样式
 属性|说明
 onSelect|节点点击事件
 
-## 5. DashChart 组件
+## 6. DashChart 组件
 一个dash柱状图组件
 
 ### 效果图
@@ -406,7 +501,7 @@ dx: 文本偏移量x方向
 dy: 文本偏移量y方向  
 
 
-## 6. DashRatioChart 组件
+## 7. DashRatioChart 组件
 一个栅格柱状统计|对比图
 
 ### 效果图
@@ -459,3 +554,94 @@ width|画布宽度|600
 raduis|栅格矩形圆角|3
 dash|栅格矩形宽、高和间隔|[5, 20, 3]
 padding|左右间距|{left: 5, right: 5}
+
+
+## 8. FlashMarker 组件
+一个动效扩散组件(核爆炸式)
+
+### 效果图
+![avatar](https://cdn.nlark.com/yuque/0/2020/png/617302/1596782803048-a9585c76-085a-40d8-b159-906bd6fe4fc7.png?x-oss-process=image%2Fresize%2Cw_746)
+### FlashMarker组件使用
+#### 引入
+```js
+import Vue from 'vue'
+import {FlashMarker} from 'special-ui'
+Vue.use(FlashMarker)
+```
+#### 使用
+```html
+<template>
+<div class="container">
+    <flash-marker :width="1920" :height="1080" :dataset="dataset" @clickIndex="clickIndex"/>
+</div>
+</template>
+
+<script>
+export default {
+    data () {
+        return {
+            dataset:  [
+                {
+                    position: {x: 300, y: 300},
+                    color: '#5070FF',
+                    type: 'circle',
+                    speed: 0.2
+                },
+                {
+
+                    position: {x: 350, y: 300},
+                    color: '#6EE7FF',
+                    type: 'ellipse',
+                    speed: 0.3,
+                    max: 40,
+                },
+                {
+                    position: {x: 400, y: 300},
+                    color: '#90EE90',
+                    type: 'circle',
+                    speed: 0.45,
+                }, {
+                    position: {x: 950, y: 300},
+                    color: '#f8983a',
+                    type: 'circle',
+                    speed: 0.9,
+                    max: 100,
+                }, 
+                {
+                    position: {x: 700, y: 300},
+                    color: '#FAFA32',
+                    type: 'ellipse',
+                    speed: 1,
+                    max: 100,
+                }
+            ]
+        }
+    },
+    methods: {
+        clickIndex (index) {
+            console.log(index)
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+.container {
+  height: 100%;
+}
+</style>
+```
+#### 组件参数
+属性|说明|默认值
+--|:--:|--:
+dataset|数据|[]
+width|画布宽度|0, 必传
+height|画布高度|0, 必传
+zIndex|视图层级|0
+
+dataset数据项说明:  
+position: 动效中心坐标点;    
+color: 动效颜色;  
+type: 动效类型(circle | ellipse), 默认circle;  
+max: 动效最大范围, 默认20;  
+speed: 动效速度, 越大越快, 默认0.15  

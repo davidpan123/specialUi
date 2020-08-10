@@ -4,6 +4,8 @@ import RingChart from './RingChart/index.js'
 import FlowChart from './FlowChart/index.js'
 import DashChart from './DashChart/index.js'
 import DashRatioChart from './DashRatioChart/index.js'
+import FlashMarker from './FlashMarker/index.js'
+import FlyLine2 from './FlyLine2/index.js'
 // import PhotoWall from './PhotoWall/index.js'
 // 存储组件列表
 const components = [
@@ -12,7 +14,9 @@ const components = [
   RingChart,
   FlowChart,
   DashChart,
-  DashRatioChart
+  DashRatioChart,
+  FlashMarker,
+  FlyLine2
 ]
 
 // 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册
@@ -34,7 +38,9 @@ export {
   RingChart,
   FlowChart,
   DashChart,
-  DashRatioChart
+  DashRatioChart,
+  FlashMarker,
+  FlyLine2
 }
 
 export default {
@@ -45,5 +51,7 @@ export default {
   RingChart,
   FlowChart,
   DashChart,
-  DashRatioChart
+  DashRatioChart,
+  FlashMarker,
+  FlyLine2
 }
