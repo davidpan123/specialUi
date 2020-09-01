@@ -279,6 +279,7 @@ progress参数说明:
 --|:--:|--:
 color|颜色|'rgba(18,253,240,0.30)'
 activeColor|高亮颜色|'#09C889'
+num|扇形块数量|60
 
 anniCircle参数说明:  
 属性|说明|默认值
@@ -500,8 +501,110 @@ color: 字体颜色
 dx: 文本偏移量x方向  
 dy: 文本偏移量y方向  
 
+## 7. GradientDashChart 组件
+一个渐变的dash柱状图组件
 
-## 7. DashRatioChart 组件
+### 效果图
+![avatar](https://cdn.nlark.com/yuque/0/2020/png/617302/1598961260643-977a70da-8cf4-43fd-bdd6-790f547a99b9.png?x-oss-process=image%2Fresize%2Cw_746)
+### GradientDashChart组件使用
+#### 引入
+```js
+import Vue from 'vue'
+import {GradientDashChart} from 'special-ui'
+Vue.use(GradientDashChart)
+```
+#### 使用
+```html
+<template>
+<div class="container">
+    <gradient-dash-chart
+        :direction="'y'"
+        :dataset="dataset"
+        :axisArr="axisArr"
+        :width="770"
+        :height="400"
+        :axisNum="config.axisNum"
+        :tickSizeInner="config.tickSizeInner"
+        :axisColor="config.axisColor"
+        :xAxisTextSize="config.xAxisTextSize"
+        :yAxisTextSize="config.yAxisTextSize"
+        :axisTextColor="config.axisTextColor"
+        :textStyle="config.textStyle"
+        :dash="config.dash"
+        :padding="config.padding"/>
+</div>
+</template>
+
+<script>
+export default {
+    data () {
+        return {
+            dataset: [22, 40, 60, 80, 45, 32, 18],
+            axisArr: ['06-01', '06-02', '06-03', '06-04', '06-05', '06-06', '06-07'],
+            config: {
+                dash: [30, 10, 5],
+                padding: {
+                    top: 5,
+                    bottom: 35,
+                    left: 70,
+                    right: 0
+                },
+                axisNum: 4,
+                axisColor: '#0B4665',
+                xAxisTextSize: '24px',
+                yAxisTextSize: '18px',
+                tickSizeInner: 3,
+                axisTextColor: '#276F99',
+                textStyle: {
+                    fontSize: '24px',
+                    color: '#E6FFEF',
+                    dx: 0,
+                    dy: -20
+                }
+            }
+        }
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+.container {
+  height: 100%;
+}
+</style>
+```
+#### 组件参数
+属性|说明|默认值
+--|:--:|--:
+dataset|统计数据数组|[]
+direction|主轴方向|y
+axisArr|副轴显示|[]
+width|画布宽度|600
+height|画布高度|400
+formColor|渐变开始颜色|'#0B3C65'
+toColor|渐变结束颜色|'#37C6EA'
+lastColor|渐变结束颜色|'#ffffff'
+dash|柱状图宽、高度和间隔|[10, 25, 5]
+axisNum|副轴显示个数|5
+tickSizeInner|坐标轴内刻度|0
+tickSizeOuter|坐标轴外刻度|0
+axisColor|坐标轴颜色|'#666'
+axisTextColor|坐标轴文本颜色|'#333'
+xAxisTextColor|x坐标轴文本颜色|'', 同时存在axisTextColor和xAxisTextColor,xAxisTextColor优先级更高
+yAxisTextColor|y坐标轴文本颜色|'', 同时存在axisTextColor和yAxisTextColor,yAxisTextColor优先级更高
+axisTextSize|坐标轴文本大小|'14px'
+xAxisTextSize|x坐标轴文本大小|'', 同时存在axisTextSize和xAxisTextSize,xAxisTextSize优先级更高
+yAxisTextSize|y坐标轴文本大小|'', 同时存在axisTextSize和yAxisTextSize,yAxisTextSize优先级更高
+padding|内间距|{top: 60, bottom: 60, left: 60, right: 60}
+textStyle|文本样式|{fontSize: '14px',color: '#333333',dx: 5,dy: -15}  
+
+textStyle属性说明:  
+fontSize: 字体大小  
+color: 字体颜色  
+dx: 文本偏移量x方向  
+dy: 文本偏移量y方向  
+
+## 8. DashRatioChart 组件
 一个栅格柱状统计|对比图
 
 ### 效果图
@@ -556,7 +659,7 @@ dash|栅格矩形宽、高和间隔|[5, 20, 3]
 padding|左右间距|{left: 5, right: 5}
 
 
-## 8. FlashMarker 组件
+## 9. FlashMarker 组件
 一个动效扩散组件(核爆炸式)
 
 ### 效果图

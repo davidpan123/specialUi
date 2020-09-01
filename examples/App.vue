@@ -7,7 +7,8 @@
     <!-- <TestDashChart/> -->
     <!-- <TestDashRatioChart/> -->
     <!-- <TestFlashMarker/> -->
-    <TestFlyLine2/>
+    <!-- <TestFlyLine2/> -->
+    <TestGradientDashChart/>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import TestDashChart from './components/TestDashChart.vue'
 import TestDashRatioChart from './components/TestDashRatioChart.vue'
 import TestFlashMarker from './components/TestFlashMarker.vue'
 import TestFlyLine2 from './components/TestFlyLine2.vue'
+import TestGradientDashChart from './components/TestGradientDashChart.vue'
 export default {
   name: 'App',
   components: { 
@@ -30,7 +32,8 @@ export default {
     TestDashChart,
     TestDashRatioChart,
     TestFlashMarker,
-    TestFlyLine2
+    TestFlyLine2,
+    TestGradientDashChart
   }
 }
 </script>
@@ -49,6 +52,6 @@ body {
   text-align: center;
   color: #2c3e50;
   height: 100%;
-  /* background: #202020; */
+  background: #202020;
 }
 </style>
