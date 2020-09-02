@@ -1,6 +1,6 @@
 {
   "name": "special-ui",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": false,
   "description": "a library of effects related to visualization!",
   "main": "lib/specialUi.umd.js",
