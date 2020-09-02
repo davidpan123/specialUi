@@ -68,21 +68,21 @@ export default {
             dashSplit = this.dash[2]
         }
         let g = svg.append('g').attr('transform', 'translate(' + this.padding.left + ',' + 0 + ')')
-       
+        let w = width - this.padding.left - this.padding.right
         g.selectAll('rect')
             .data(() => {
                 let arr = []
                 let x = 0
                 let item0 = {
-                    x: xcale(x),
+                    x: x,
                     color: this.getColor(x)
                 }
                 arr.push(item0)
-                while (x < total) {
+                while (x < w) {
                     x = x + dashWdith + dashSplit
-                    if (x <= total) {
+                    if (x <= w) {
                         let item = {
-                            x: xcale(x),
+                            x: x,
                             color: this.getColor(x)
                         }
                         arr.push(item)
@@ -131,11 +131,12 @@ export default {
         getColor (num) {
             let color = ''
             for (let i = 0; i < this.realDatas.length; i++) {
-                if (num < this.realDatas[i].end) {
+                if (num <= this.realDatas[i].end) {
                     color = this.realDatas[i].color
                     break
                 }
             }
+
             return color
         }
     },
@@ -149,8 +150,14 @@ export default {
         },
         realDatas () {
             let start = 0
+            let maxWidth = this.width - this.padding.left - this.padding.right
+            let total = 0
+            this.dataset.forEach(item => {
+                total += item.num
+            })
+            let radius = maxWidth / total
             return this.dataset.map(item => {
-                start += item.num
+                start += item.num * radius
                 return {
                     end: start,
                     color: item.color

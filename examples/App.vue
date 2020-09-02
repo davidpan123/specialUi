@@ -5,10 +5,10 @@
     <!-- <TestRingChart/> -->
     <!-- <TestFlowChart/> -->
     <!-- <TestDashChart/> -->
-    <!-- <TestDashRatioChart/> -->
+    <TestDashRatioChart/>
     <!-- <TestFlashMarker/> -->
     <!-- <TestFlyLine2/> -->
-    <TestGradientDashChart/>
+    <!-- <TestGradientDashChart/> -->
   </div>
 </template>
 
