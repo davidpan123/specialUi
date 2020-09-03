@@ -20,7 +20,7 @@ export default {
             // ]
             dataset:  [
                 {
-                    num: 40,
+                    num: 4,
                     color: '#2ba0c5'
                 },
                 {
