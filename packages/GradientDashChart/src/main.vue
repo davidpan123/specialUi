@@ -311,7 +311,7 @@ export default {
           .attr('dx', dx)
           .attr('dy', dy)
           .text(function(d) {
-              return d
+              return d > 0 ? d : ''
           })
     } else {
       let xcale = d3.scaleBand().domain(ranges).range([0, width - marge.left - marge.right])
@@ -460,7 +460,7 @@ export default {
         .attr('dx', dx)
         .attr('dy', dy)
         .text(function(d) {
-          return d
+          return d > 0 ? d : ''
         })
     }
   },
