@@ -748,3 +748,124 @@ color: 动效颜色;
 type: 动效类型(circle | ellipse), 默认circle;  
 max: 动效最大范围, 默认20;  
 speed: 动效速度, 越大越快, 默认0.15  
+
+## 10. BesselArcFlyline 组件
+三次贝塞尔加圆弧组成的飞线
+### 效果图
+![avatar](https://cdn.nlark.com/yuque/0/2020/png/617302/1600321489965-4cc3e334-9d53-416a-ba89-7ca50f486d22.png?x-oss-process=image%2Fresize%2Cw_746)
+
+### 飞线使用
+#### 引入
+```js
+import Vue from 'vue'
+import {BesselArcFlyline} from 'special-ui'
+Vue.use(BesselArcFlyline)
+```
+#### 使用
+```html
+<template>
+  <div class="container">
+    <bessel-arc-flyline :width="1820" :height="900" :dataset="data" :config="config"></bessel-arc-flyline>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'App',
+  data () {
+    return {
+      data: [
+        {
+            from: { x: 1700, y: 300},
+            to: { x: 1500, y: 500},
+            end: { x: 1000, y: 300},
+            r: 200,
+            firstControlFactor: -0.5,
+            secondControlFactor: 0.1,
+            speedBezierFactor: 8000,
+            speedArcFactor: 200,
+            startArcAngle: -Math.PI / 2,
+            endArcAngle: Math.PI * 1.8,
+            counterclockwise: true
+        },
+        {
+            from: { x: 100, y: 300},
+            to: { x: 600, y: 500},
+            end: { x: 800, y: 300},
+            r: 200,
+            firstControlFactor: -0.5,
+            secondControlFactor: 0.1,
+            speedBezierFactor: 8000,
+            speedArcFactor: 200,
+            startArcAngle: -Math.PI / 2,
+            endArcAngle: Math.PI * 3 / 2.6
+        }
+      ],
+      config: {
+        //marker点半径
+        // markerRadius: 2,
+        //marker点颜色,为空或null则默认取线条颜色
+        // markerColor: null,
+        // 线条类型 solid、dashed; 有lineDash并且设值则dashed
+        lineDash: [5, 4],
+        //线条宽度
+        lineWidth: 1,
+        //线条颜色
+        colors: ['#F9815C', '#F8AB60', '#EDCC72', '#E2F194', '#94E08A', '#4ECDA5'],
+        //移动点半径
+        moveRadius: 2,
+        //移动点颜色
+        fillColor: '#fff',
+        //移动点阴影颜色
+        shadowColor: '#fff',
+        //移动点阴影大小
+        shadowBlur: 1
+      }
+    }
+  }
+}
+</script>
+
+<style>
+.container {
+  height: 100%;
+}
+</style>
+
+```
+#### 组件参数
+属性|说明|默认值
+--|:--:|--:
+width|画布宽度|0
+height|画布高度|0
+dataset|飞线数组|[]
+config|飞线参数配置|{}
+
+config: 数组
+属性|说明|默认值
+--|:--:|--:
+markerRadius|marker点半径|3, 为0则没有圆点显示
+markerColor|marker颜色|null, 不设置则和线条颜色一致
+lineWidth|线条宽度|1
+lineDash|虚线设置|[], 为空数组则显示实线
+colors|飞线颜色|[]
+moveRadius|移动点半径|3
+fillColor|移动点颜色|'#fff'
+shadowColor|移动点阴影颜色|'#fff'
+shadowColor|移动点阴影颜色|'#fff'
+shadowBlur|移动点阴影大小|5  
+
+dataset对象参数说明：
+属性|说明
+--|:--:
+from|三次贝塞尔起点坐标
+to|三次贝塞尔中间点坐标
+end|三次贝塞尔终点点坐标
+r|连接贝塞尔的弧线半径
+firstControlFactor|三次贝塞尔第一个曲线系数
+secondControlFactor|三次贝塞尔第二个曲线系数
+speedBezierFactor|贝塞尔动画系数，越大越慢
+speedArcFactor|圆弧动画系数，越大越慢
+startArcAngle|开始弧度
+endArcAngle|结束弧度  
+counterclockwise|是否逆时针画弧度 

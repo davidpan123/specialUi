@@ -57,35 +57,53 @@ let MoveLine = function (ctx, ctx2, userOptions) {
     function MarkLine(opts) {
         this.from = opts.from;
         this.to = opts.to;
+        this.end = opts.end;
+        this.r = opts.r;
         this.id = opts.id;
         // 贝塞尔时间
         this.t = 0;
-        this.raduis = opts.raduis || 0.5;
-        let time = opts.time || 6000;
+        let firstControlFactor = opts.firstControlFactor || 0.5;
+        let secondControlFactor = opts.secondControlFactor || 0.5;
+        let time = opts.speedBezierFactor || 6000;
+        this.speedArcFactor = opts.speedArcFactor || 200;
+        this.startArcAngle = opts.startArcAngle || 0;
+        this.endArcAngle = opts.endArcAngle || Math.PI * 2;
+        this.counterclockwise = opts.counterclockwise || false
         this.step = 0
         // 控制点
-        this.cps = this.computeControlPoint(this.from.location, this.to.location, this.raduis)
-        this.path = this.getPointList(this.from.location, this.to.location, this.cps, time)
+        this.cps1 = this.computeControlPoint(this.from.location, this.to.location, firstControlFactor)
+        this.cps2 = this.computeControlPoint(this.to.location, this.end.location, secondControlFactor)
+        this.path = this.getPointList(this.from.location, this.end.location, this.cps1, this.cps2, time)
     }
 
-    MarkLine.prototype.getPointList = function (from, to, cps, time) {
+    MarkLine.prototype.getPointList = function (from, end, cps1, cps2, time) {
         let points = [];
         let step = (2000) / (60 * time);
         for (let t = 0; t <= 1; t += step) {
-            const point = this.getPointByTime(from, to, cps, t);
+            const point = this.getPointByTime(from, cps1, cps2, end, t);
             points.push(point)
         }
         //修正最后一点在插值产生的偏移
-        points[points.length - 1] = to;
+        points[points.length - 1] = end;
         return points;
     }
 
-    MarkLine.prototype.getPointByTime = function (from, to, cp, t) {
+    MarkLine.prototype.getPointByTime = function (from, cp1, cp2, end, t) {
+        //参数分别为t，起始点，两个控制点和终点
         let x1 = from.x, y1 = from.y;
-        let x2 = to.x, y2 = to.y;
-        let cx = cp.x, cy = cp.y;
-        let x = (1 - t) * (1 - t) * x1 + 2 * t * (1 - t) * cx + t * t * x2,
-            y = (1 - t) * (1 - t) * y1 + 2 * t * (1 - t) * cy + t * t * y2;
+        let x2 = end.x, y2 = end.y;
+        let cx1 = cp1.x, cy1 = cp1.y;
+        let cx2 = cp2.x, cy2 = cp2.y
+        let x =
+            x1 * (1 - t) * (1 - t) * (1 - t) +
+            3 * cx1 * t * (1 - t) * (1 - t) +
+            3 * cx2 * t * t * (1 - t) +
+            x2 * t * t * t;
+        let y =
+            y1 * (1 - t) * (1 - t) * (1 - t) +
+            3 * cy1 * t * (1 - t) * (1 - t) +
+            3 * cy2 * t * t * (1 - t) +
+            y2 * t * t * t;
         return {x: x, y: y};
     }
 
@@ -113,9 +131,38 @@ let MoveLine = function (ctx, ctx2, userOptions) {
         this.to.draw(context);
     }
 
+    MarkLine.prototype.getArcPointList = function (start, r, startAngel, endAngel) {
+        let points = [];
+        let step = Math.PI / this.speedArcFactor;
+        for (let angel = startAngel + step; angel < endAngel; angel += step) {
+            let point = {
+                x: start.x + r * Math.cos(angel),
+                y: start.y + r * Math.sin(angel) + r
+            }
+
+            if (this.counterclockwise) {
+                if (!(angel > startAngel + Math.PI * 2 && angel < endAngel || 
+                    angel > startAngel && angel < endAngel - Math.PI * 2)) {
+                        points.push(point)
+                }
+            } else {
+                points.push(point)
+            }
+        }
+        
+        let endPoint = {
+            x: start.x + r * Math.cos(endAngel),
+            y: start.y + r * Math.sin(endAngel) +  r
+        }
+        
+        // 逆时针则反转数组
+        points = this.counterclockwise ? points.reverse() : points;
+        //修正最后一点在插值产生的偏移
+        points[points.length - 1] = endPoint;
+        return points
+    }
+
     MarkLine.prototype.drawLinePath = function (context) {
-        let pointList = this.path;
-        let len = pointList.length;
         context.save();
         context.beginPath();
         context.lineWidth = options.lineWidth;
@@ -124,10 +171,16 @@ let MoveLine = function (ctx, ctx2, userOptions) {
             context.setLineDash(options.lineDash);
         }
         context.moveTo(this.from.location.x, this.from.location.y);
-        context.quadraticCurveTo(this.cps.x, this.cps.y, this.to.location.x, this.to.location.y);
+        context.bezierCurveTo(this.cps1.x, this.cps1.y, this.cps2.x, this.cps2.y, this.end.location.x, this.end.location.y);
+        if (this.r && this.r > 0) {
+            context.arc(this.end.location.x, this.end.location.y + this.r, this.r, this.startArcAngle, this.endArcAngle, this.counterclockwise);
+            let arcPointList = this.getArcPointList(this.end.location, this.r,this.startArcAngle, this.endArcAngle)
+            this.path = [...this.path, ...arcPointList]
+        }
+
         context.stroke();
         context.restore();
-        this.t = 0; //缩放地图时重新绘制动画
+        this.t = 0;
     }
 
     MarkLine.prototype.drawMoveCircle = function (context) {
@@ -158,7 +211,7 @@ let MoveLine = function (ctx, ctx2, userOptions) {
         ctx.clearRect(0, 0, width, height);
 
         markLines.forEach(function (line) {
-            line.drawMarker(ctx);
+            // line.drawMarker(ctx);
             line.drawLinePath(ctx);
         });
     }
@@ -186,14 +239,24 @@ let MoveLine = function (ctx, ctx2, userOptions) {
         dataset.forEach(function (line, i) {
             markLines.push(new MarkLine({
                 id: i,
-                raduis: line.raduis,
-                time: line.time,
+                r: line.r,
+                firstControlFactor: line.firstControlFactor,
+                secondControlFactor: line.secondControlFactor,
+                speedBezierFactor: line.speedBezierFactor,
+                speedArcFactor: line.speedArcFactor,
+                startArcAngle: line.startArcAngle,
+                endArcAngle: line.endArcAngle,
+                counterclockwise: line.counterclockwise,
                 from: new Marker({
                     location: line.from,
                     color: options.colors[i] || '#EDCC72',
                 }),
                 to: new Marker({
                     location: line.to,
+                    color: options.colors[i] || '#EDCC72'
+                }),
+                end: new Marker({
+                    location: line.end,
                     color: options.colors[i] || '#EDCC72'
                 })
             }));

@@ -7,6 +7,7 @@ import DashRatioChart from './DashRatioChart/index.js'
 import FlashMarker from './FlashMarker/index.js'
 import FlyLine2 from './FlyLine2/index.js'
 import GradientDashChart from './GradientDashChart/index.js'
+import BesselArcFlyline from './BesselArcFlyline/index.js'
 // import PhotoWall from './PhotoWall/index.js'
 // 存储组件列表
 const components = [
@@ -18,7 +19,8 @@ const components = [
   DashRatioChart,
   FlashMarker,
   FlyLine2,
-  GradientDashChart
+  GradientDashChart,
+  BesselArcFlyline
 ]
 
 // 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册
@@ -43,7 +45,8 @@ export {
   DashRatioChart,
   FlashMarker,
   FlyLine2,
-  GradientDashChart
+  GradientDashChart,
+  BesselArcFlyline
 }
 
 export default {
@@ -57,5 +60,6 @@ export default {
   DashRatioChart,
   FlashMarker,
   FlyLine2,
-  GradientDashChart
+  GradientDashChart,
+  BesselArcFlyline
 }

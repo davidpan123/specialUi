@@ -1,4 +1,4 @@
-import { requestAnimationFrame } from './requestAnimationFrame'
+import { requestAnimationFrame } from '../../lib/requestAnimationFrame'
 
 function Marker(opts) {
     this.city = opts.name

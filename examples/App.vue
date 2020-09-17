@@ -5,10 +5,11 @@
     <!-- <TestRingChart/> -->
     <!-- <TestFlowChart/> -->
     <!-- <TestDashChart/> -->
-    <TestDashRatioChart/>
+    <!-- <TestDashRatioChart/> -->
     <!-- <TestFlashMarker/> -->
     <!-- <TestFlyLine2/> -->
     <!-- <TestGradientDashChart/> -->
+    <TestBesselArcFlyline/>
   </div>
 </template>
 
@@ -23,6 +24,7 @@ import TestDashRatioChart from './components/TestDashRatioChart.vue'
 import TestFlashMarker from './components/TestFlashMarker.vue'
 import TestFlyLine2 from './components/TestFlyLine2.vue'
 import TestGradientDashChart from './components/TestGradientDashChart.vue'
+import TestBesselArcFlyline from './components/TestBesselArcFlyline.vue'
 export default {
   name: 'App',
   components: { 
@@ -33,7 +35,8 @@ export default {
     TestDashRatioChart,
     TestFlashMarker,
     TestFlyLine2,
-    TestGradientDashChart
+    TestGradientDashChart,
+    TestBesselArcFlyline
   }
 }
 </script>
