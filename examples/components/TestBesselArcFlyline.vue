@@ -14,7 +14,7 @@ export default {
               from: { x: 1700, y: 300},
               to: { x: 1500, y: 500},
               end: { x: 1000, y: 300},
-              r: 200,
+              r: 100,
               firstControlFactor: -0.5,
               secondControlFactor: 0.1,
               speedBezierFactor: 8000,
@@ -27,7 +27,7 @@ export default {
               from: { x: 100, y: 300},
               to: { x: 600, y: 500},
               end: { x: 800, y: 300},
-              r: 200,
+              r: 100,
               firstControlFactor: -0.5,
               secondControlFactor: 0.1,
               speedBezierFactor: 8000,
@@ -35,18 +35,33 @@ export default {
               startArcAngle: -Math.PI / 2,
               endArcAngle: Math.PI * 3 / 2.6
           },
-          // {
-          //     from: { x: 100, y: 200},
-          //     to: { x: 600, y: 500},
-          //     end: { x: 800, y: 300},
-          //     r: 210,
-          //     firstControlFactor: -0.5,
-          //     secondControlFactor: 0.1,
-          //     speedBezierFactor: 8000,
-          //     speedArcFactor: 200,
-          //     startArcAngle: -Math.PI / 2,
-          //     endArcAngle: Math.PI * 3 / 2.6
-          // }
+          {
+              from: { x: 1700, y: 700},
+              to: { x: 1500, y: 500},
+              end: { x: 1000, y: 790},
+              r: 100,
+              firstControlFactor: 0.5,
+              secondControlFactor: -0.1,
+              speedBezierFactor: 8000,
+              speedArcFactor: 200,
+              startArcAngle: -Math.PI * 3 / 2,
+              endArcAngle: Math.PI / 6,
+              arcDirction: 'top'
+          },
+          {
+              from: { x: 100, y: 700},
+              to: { x: 600, y: 500},
+              end: { x: 800, y: 790},
+              r: 100,
+              firstControlFactor: 0.5,
+              secondControlFactor: -0.1,
+              speedBezierFactor: 8000,
+              speedArcFactor: 200,
+              startArcAngle: -Math.PI * 3 / 2,
+              endArcAngle: Math.PI * 0.9,
+              counterclockwise: true,
+              arcDirction: 'top'
+          },
       ],
       config: {
           //marker点半径

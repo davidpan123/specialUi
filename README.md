@@ -752,7 +752,7 @@ speed: 动效速度, 越大越快, 默认0.15
 ## 10. BesselArcFlyline 组件
 三次贝塞尔加圆弧组成的飞线
 ### 效果图
-![avatar](https://cdn.nlark.com/yuque/0/2020/png/617302/1600321489965-4cc3e334-9d53-416a-ba89-7ca50f486d22.png?x-oss-process=image%2Fresize%2Cw_746)
+![avatar](https://cdn.nlark.com/yuque/0/2020/png/617302/1600655082654-c4c44d18-a494-4715-a0e7-b30228093a44.png?x-oss-process=image%2Fresize%2Cw_746)
 
 ### 飞线使用
 #### 引入
@@ -869,3 +869,4 @@ speedArcFactor|圆弧动画系数，越大越慢
 startArcAngle|开始弧度
 endArcAngle|结束弧度  
 counterclockwise|是否逆时针画弧度 
+arcDirction|圆弧朝向，默认朝下 

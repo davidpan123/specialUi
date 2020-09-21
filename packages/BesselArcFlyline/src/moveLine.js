@@ -69,6 +69,7 @@ let MoveLine = function (ctx, ctx2, userOptions) {
         this.startArcAngle = opts.startArcAngle || 0;
         this.endArcAngle = opts.endArcAngle || Math.PI * 2;
         this.counterclockwise = opts.counterclockwise || false
+        this.arcDirction = opts.arcDirction || 'bottom'
         this.step = 0
         // 控制点
         this.cps1 = this.computeControlPoint(this.from.location, this.to.location, firstControlFactor)
@@ -134,10 +135,11 @@ let MoveLine = function (ctx, ctx2, userOptions) {
     MarkLine.prototype.getArcPointList = function (start, r, startAngel, endAngel) {
         let points = [];
         let step = Math.PI / this.speedArcFactor;
+        let dy = this.arcDirction === 'top' ? -r : r
         for (let angel = startAngel + step; angel < endAngel; angel += step) {
             let point = {
                 x: start.x + r * Math.cos(angel),
-                y: start.y + r * Math.sin(angel) + r
+                y: start.y + r * Math.sin(angel) + dy
             }
 
             if (this.counterclockwise) {
@@ -173,7 +175,8 @@ let MoveLine = function (ctx, ctx2, userOptions) {
         context.moveTo(this.from.location.x, this.from.location.y);
         context.bezierCurveTo(this.cps1.x, this.cps1.y, this.cps2.x, this.cps2.y, this.end.location.x, this.end.location.y);
         if (this.r && this.r > 0) {
-            context.arc(this.end.location.x, this.end.location.y + this.r, this.r, this.startArcAngle, this.endArcAngle, this.counterclockwise);
+            let dy = this.arcDirction === 'top' ? -this.r : this.r
+            context.arc(this.end.location.x, this.end.location.y + dy, this.r, this.startArcAngle, this.endArcAngle, this.counterclockwise);
             let arcPointList = this.getArcPointList(this.end.location, this.r,this.startArcAngle, this.endArcAngle)
             this.path = [...this.path, ...arcPointList]
         }
@@ -247,6 +250,7 @@ let MoveLine = function (ctx, ctx2, userOptions) {
                 startArcAngle: line.startArcAngle,
                 endArcAngle: line.endArcAngle,
                 counterclockwise: line.counterclockwise,
+                arcDirction: line.arcDirction,
                 from: new Marker({
                     location: line.from,
                     color: options.colors[i] || '#EDCC72',
