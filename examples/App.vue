@@ -9,7 +9,8 @@
     <!-- <TestFlashMarker/> -->
     <!-- <TestFlyLine2/> -->
     <!-- <TestGradientDashChart/> -->
-    <TestBesselArcFlyline/>
+    <!-- <TestBesselArcFlyline/> -->
+    <TestGradientDashProgress/>
   </div>
 </template>
 
@@ -25,6 +26,7 @@ import TestFlashMarker from './components/TestFlashMarker.vue'
 import TestFlyLine2 from './components/TestFlyLine2.vue'
 import TestGradientDashChart from './components/TestGradientDashChart.vue'
 import TestBesselArcFlyline from './components/TestBesselArcFlyline.vue'
+import TestGradientDashProgress from './components/TestGradientDashProgress.vue'
 export default {
   name: 'App',
   components: { 
@@ -36,7 +38,8 @@ export default {
     TestFlashMarker,
     TestFlyLine2,
     TestGradientDashChart,
-    TestBesselArcFlyline
+    TestBesselArcFlyline,
+    TestGradientDashProgress
   }
 }
 </script>

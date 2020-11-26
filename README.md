@@ -896,3 +896,54 @@ startArcAngle|开始弧度
 endArcAngle|结束弧度  
 counterclockwise|是否逆时针画弧度 
 arcDirction|圆弧朝向，默认朝下 
+
+## 11. GradientDashProgress 组件
+渐变性间隔进度条
+### 效果图
+![avatar](https://cdn.nlark.com/yuque/0/2020/png/617302/1606376753469-06da59d6-d6ca-421c-8d87-ad2b52b6f855.png)
+
+### GradientDashProgress 使用
+#### 引入
+```js
+import Vue from 'vue'
+import {GradientDashProgress} from 'special-ui'
+Vue.use(GradientDashProgress)
+```
+#### 使用
+```html
+<template>
+<div class="container">
+    <gradient-dash-progress :width="600" :raduis="2" :total="total" :num="num"/>
+</div>
+</template>
+
+<script>
+export default {
+    data () {
+        return {
+            num: 20,
+            total: 100
+        }
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+.container {
+  height: 100%;
+}
+</style>
+```
+#### 组件参数
+属性|说明|默认值
+--|:--:|--:
+width|画布宽度|0
+height|画布高度|0
+total|总数|0
+num|占比数|0 
+bacColor|间隔默认背景色|'#244971'
+formColor|渐变开始颜色|'#0B3C65'
+toColor|渐变结束颜色|'#37C6EA'
+raduis|栅格矩形圆角|3
+dash|栅格矩形宽、高和间隔|[5, 20, 3]
+padding|左右间距|{left: 5, right: 5}
